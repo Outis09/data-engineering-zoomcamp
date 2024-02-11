@@ -1,0 +1,1 @@
+This directory contains a python file I used to practise the `argparse` module in Python. I learnt from [this YouTube video](https://www.youtube.com/watch?v=idq6rTYqvkY) and adapted the codes to test my understanding.
