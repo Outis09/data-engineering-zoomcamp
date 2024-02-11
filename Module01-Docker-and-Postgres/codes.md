@@ -61,3 +61,18 @@ jupyter nbconvert Upload-data.ipynb --to script
 ```bash
 mv Upload-data.py Ingest-data.py
 ```
+
+##### Run ingest data script with python
+```bash
+python Ingest-data.py --user=outis --host=localhost --port=5432 --db=ny_taxi --table_name=yellow_taxi_2021_01_data --url=https://github.com/DataTalksClub/nyc-tlc-data/releases/download/yellow/yellow_tripdata_2021-01.csv.gz
+```
+
+##### dockerize ingest data script
+```bash
+docker build -t taxi_ingest:0.2 .
+```
+
+##### run docker container with ingest data script
+```bash
+docker run --network=db-network taxi_ingest:0.2 --user=outis --password=outis --host=postgres-db --port=5432 --db=ny_taxi --table_name=yellow_taxi_2021_01_data --url=https://github.com/DataTalksClub/nyc-tlc-data/releases/download/yellow/yellow_tripdata_2021-01.csv.gz 
+```
