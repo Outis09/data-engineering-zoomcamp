@@ -51,3 +51,13 @@ docker run -it \
     --name pgadmin \
     dpage/pgadmin4
 ```
+
+##### Convert notebook to python script
+```bash
+jupyter nbconvert Upload-data.ipynb --to script
+```
+
+##### Rename file to Ingest-data.py
+```bash
+mv Upload-data.py Ingest-data.py
+```
