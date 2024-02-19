@@ -8,14 +8,15 @@ terraform {
 }
 
 provider "google" {
-  project = "nimble-volt-413114"
-  region  = "us-west4"
+  credentials = file(var.credentials)
+  project     = var.project
+  region      = var.region
 }
 
 
 resource "google_storage_bucket" "de-zoomcamp-demo-bucket" {
-  name          = "nimble-volt-413114-terra-bucket"
-  location      = "US"
+  name          = var.gcs_bucket_name
+  location      = var.location
   force_destroy = true
 
 
@@ -27,4 +28,12 @@ resource "google_storage_bucket" "de-zoomcamp-demo-bucket" {
       type = "AbortIncompleteMultipartUpload"
     }
   }
+}
+
+
+
+resource "google_bigquery_dataset" "terra_demo_dataset" {
+  dataset_id  = var.bq_dataset_name
+  description = "My first bigquery dataset created using terraform"
+  location    = var.location
 }
