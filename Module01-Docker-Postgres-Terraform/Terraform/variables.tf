@@ -1,6 +1,6 @@
 variable "credentials" {
   description = "My credentials"
-  default = "~/.gc/terra-creds.json"
+  default = "path/to/my/credentials"
 }
 
 variable "project" {
