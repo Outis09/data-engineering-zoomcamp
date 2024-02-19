@@ -3,7 +3,7 @@
 ```bash
 docker run -it \
     -e POSTGRES_USER="outis" \
-    -e POSTGRES_PASSWORD="****" \
+    -e POSTGRES_PASSWORD=${POSTGRES_PWD} \
     -e POSTGRES_DB="ny_taxi" \
     -v $(pwd)/ny_taxi_postgres_data:/var/lib/postgresql/data \
     -p 5432:5432 \
@@ -32,7 +32,7 @@ docker network create db-network
 ```bash
 docker run -it \
     -e POSTGRES_USER="outis" \
-    -e POSTGRES_PASSWORD="outis" \
+    -e POSTGRES_PASSWORD=${POSTGRES_PWD} \
     -e POSTGRES_DB="ny_taxi" \
     -v /home/ayersamuel/Documents/data-engineering-zoomcamp/ny_taxi_postgres_data:/var/lib/postgresql/data \
     -p 5432:5432 \
@@ -45,7 +45,7 @@ docker run -it \
 ```bash
 docker run -it \
     -e PGADMIN_DEFAULT_EMAIL="admin@admin.com" \
-    -e PGADMIN_DEFAULT_PASSWORD="outis" \
+    -e PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PASSWORD} \
     -p 8080:80 \
     --network=db-network \
     --name pgadmin \
@@ -64,7 +64,13 @@ mv Upload-data.py Ingest-data.py
 
 ##### Run ingest data script with python
 ```bash
-python Ingest-data.py --user=outis --host=localhost --port=5432 --db=ny_taxi --table_name=yellow_taxi_2021_01_data --url=https://github.com/DataTalksClub/nyc-tlc-data/releases/download/yellow/yellow_tripdata_2021-01.csv.gz
+python Ingest-data.py \
+    --user=outis \
+    --host=localhost \
+    --port=5432 \
+    --db=ny_taxi \
+    --table_name=yellow_taxi_2021_01_data \
+    --url=https://github.com/DataTalksClub/nyc-tlc-data/releases/download/yellow/yellow_tripdata_2021-01.csv.gz
 ```
 
 ##### dockerize ingest data script
@@ -74,5 +80,13 @@ docker build -t taxi_ingest:0.2 .
 
 ##### run docker container with ingest data script
 ```bash
-docker run --network=db-network taxi_ingest:0.2 --user=outis --password=outis --host=postgres-db --port=5432 --db=ny_taxi --table_name=yellow_taxi_2021_01_data --url=https://github.com/DataTalksClub/nyc-tlc-data/releases/download/yellow/yellow_tripdata_2021-01.csv.gz 
+docker run \
+    --network=db-network taxi_ingest:0.2 
+    --user=outis 
+    --password=${POSTGRES_PWD} 
+    --host=postgres-db 
+    --port=5432 
+    --db=ny_taxi 
+    --table_name=yellow_taxi_2021_01_data 
+    --url=https://github.com/DataTalksClub/nyc-tlc-data/releases/download/yellow/yellow_tripdata_2021-01.csv.gz 
 ```
