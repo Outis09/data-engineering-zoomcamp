@@ -9,7 +9,7 @@ if 'data_exporter' not in globals():
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = "/home/src/sa.json"
 
 bucket_name = "mage-zoomcamp-demo-bucket"
-project_id = "nimble-volt-413114"
+project_id = "project-id"
 table_name = "nyc_taxi_data"
 root_path = f'{bucket_name}/{table_name}'
 
