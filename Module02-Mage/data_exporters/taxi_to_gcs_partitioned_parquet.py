@@ -27,6 +27,6 @@ def export_data(data, *args, **kwargs):
         partition_cols = ['pickup_date'],
         filesystem = gcs
     )
-    # Specify your data exporting logic here
+    
 
 

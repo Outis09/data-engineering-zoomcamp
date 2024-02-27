@@ -10,12 +10,6 @@ if 'test' not in globals():
 
 @data_loader
 def load_from_google_cloud_storage(*args, **kwargs):
-    """
-    Template for loading data from a Google Cloud Storage bucket.
-    Specify your configuration settings in 'io_config.yaml'.
-
-    Docs: https://docs.mage.ai/design/data-loading#googlecloudstorage
-    """
     config_path = path.join(get_repo_path(), 'io_config.yaml')
     config_profile = 'default'
 
@@ -32,7 +26,4 @@ def load_from_google_cloud_storage(*args, **kwargs):
 
 @test
 def test_output(output, *args) -> None:
-    """
-    Template code for testing the output of the block.
-    """
     assert output is not None, 'The output is undefined'
