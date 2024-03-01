@@ -14,7 +14,7 @@ def extract_non_zero(data, *args, **kwargs):
     # create two date columns
     data['lpep_pickup_date'] = data['lpep_pickup_datetime'].dt.date
     data['lpep_dropoff_date'] = data['lpep_dropoff_datetime'].dt.date
-    # make all column name snake case
+    # make all column names snake case
     data.columns = (data.columns
                 .str.replace('(?<=[a-z])(?=[A-Z])', '_', regex=True)
                 .str.lower()
