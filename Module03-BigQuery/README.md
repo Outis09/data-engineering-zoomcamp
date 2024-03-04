@@ -96,5 +96,13 @@ The size is 12.82MB.
 ##### Question 6: Where is the data stored in the External Table you created? 
 Answer: GCP Bucket
 
-##### Question 7. It is best practice in Big Query to always cluster your data
+##### Question 7: It is best practice in Big Query to always cluster your data
 Answer: False
+
+##### Question 8 (optional): Write a SELECT count(*) query FROM the materialized table you created. How many bytes does it estimate will be read? Why?
+
+```sql
+SELECT COUNT(*) FROM `ny_taxi.partitioned_clustered_green_tripdata_2022`;
+```
+
+The query is estimated to read 0 bytes. Due to the partitions and clusters, BigQuery does not need to scan any data to return the result.
